@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Returns Calculator</title>
+    <title>Investment Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="container">
-    <!-- Form Container -->
+    <!-- Form Section -->
     <div class="form-container">
         <h1>Investment Calculator</h1>
         <form id="investment-form">
@@ -38,15 +38,6 @@
             </div>
 
             <div class="form-group">
-                <label for="index">Choose Index:</label>
-                <select id="index" name="index" required>
-                    <option value="sp500">S&P 500 (Avg 10%)</option>
-                    <option value="qqq">QQQ (Avg 12%)</option>
-                    <option value="magnificent7">Magnificent 7 (Est. 15%)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="contributionTiming">Contribution Timing:</label>
                 <select id="contributionTiming" name="contributionTiming" required>
                     <option value="beginning">Beginning of Period</option>
@@ -54,13 +45,38 @@
                 </select>
             </div>
 
-            <button type="submit">Calculate</button>
+            <div class="form-group">
+                <label for="investmentType">Investment Type:</label>
+                <select id="investmentType" name="investmentType" required>
+                    <option value="index">Index (S&P 500, QQQ, Magnificent 7)</option>
+                    <option value="custom">Custom Stock Pie</option>
+                </select>
+            </div>
 
+            <!-- Index selection -->
+            <div id="indexSection" class="form-group">
+                <label for="index">Choose Index:</label>
+                <select id="index" name="index">
+                    <option value="sp500">S&P 500 (Avg 10%)</option>
+                    <option value="qqq">QQQ (Avg 12%)</option>
+                    <option value="magnificent7">Magnificent 7 (Est. 15%)</option>
+                </select>
+            </div>
+
+            <!-- Custom Pie Section -->
+            <div id="customPieSection" style="display: none;">
+                <h3>Build Your Stock Pie</h3>
+                <div id="pieBuilder"></div>
+                <button type="button" id="addStockBtn">Add Stock</button>
+                <p><em>Note: Assuming 20% return for pie until real data is connected.</em></p>
+            </div>
+
+            <button type="submit">Calculate</button>
             <div id="result" class="result"></div>
         </form>
     </div>
 
-    <!-- Chart Container -->
+    <!-- Chart Section -->
     <div class="chart-container">
         <canvas id="investmentChart"></canvas>
     </div>

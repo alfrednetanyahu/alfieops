@@ -119,7 +119,54 @@ canvas {
     margin-top: 10px;
 }
 
-/* Responsive tweaks */
+/* Custom Pie Section */
+#customPieSection h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.pie-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pie-row select, .pie-row input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.pie-row button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pie-row button:hover {
+    background-color: #c82333;
+}
+
+#addStockBtn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#addStockBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
