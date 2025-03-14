@@ -14,7 +14,7 @@ document.getElementById('addStockBtn').addEventListener('click', function () {
     row.classList.add('pie-row');
     row.innerHTML = `
         <select class="stock-select">${getSp500Options()}</select>
-        <input type="number" class="stock-weight" placeholder="% Weight" min="1" max="100" required>
+        <input type="number" class="stock-weight" placeholder="% Weight" min="1" max="100" step="1" required>
         <button type="button" onclick="this.parentElement.remove()">Remove</button>
     `;
     pieBuilder.appendChild(row);
@@ -83,36 +83,48 @@ document.getElementById('investment-form').addEventListener('submit', function (
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `<h3>Estimated Value: $${totalValue.toFixed(2)}</h3><p>Total Invested: $${totalInvested.toFixed(2)}</p>`;
 
-    // Render Chart
+    // Render Chart (as BAR)
     if (chart) chart.destroy();
     const ctx = document.getElementById('investmentChart').getContext('2d');
     chart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [
                 {
                     label: 'Invested Amount',
                     data: investedData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
                     borderColor: 'blue',
-                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
-                    fill: true,
-                    tension: 0.1,
-                    borderWidth: 3,
-                    pointRadius: 0,
-                    borderDash: [10, 5]
+                    borderWidth: 1
                 },
                 {
                     label: 'Growth (Interest)',
                     data: growthData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
                     borderColor: 'green',
-                    backgroundColor: 'rgba(75, 192, 192, 0.3)',
-                    fill: true,
-                    tension: 0.1,
-                    borderWidth: 3,
-                    pointRadius: 0
+                    borderWidth: 1
                 }
             ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: { font: { size: 14 } }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value) {
+                            return '$' + value.toLocaleString();
+                        }
+                    }
+                }
+            }
         }
     });
 });

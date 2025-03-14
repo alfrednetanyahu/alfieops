@@ -177,3 +177,32 @@ canvas {
         max-width: 100%;
     }
 }
+
+/* Ensure pie-row elements are aligned properly */
+.pie-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pie-row select {
+    flex: 2;
+}
+
+.pie-row input {
+    flex: 1;
+}
+
+.pie-row button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+}
+
+.pie-row button:hover {
+    background-color: #c82333;
+}
