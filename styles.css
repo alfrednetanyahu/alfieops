@@ -176,33 +176,56 @@ canvas {
     .chart-container {
         max-width: 100%;
     }
+
+    .pie-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pie-row button {
+        width: 100%;
+    }
 }
 
-/* Ensure pie-row elements are aligned properly */
+/* Clean row alignment */
 .pie-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 10px;
 }
 
+/* Resize dropdown */
 .pie-row select {
-    flex: 2;
+    flex: 6; /* 60% width */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 0; /* prevent overflow */
 }
 
+/* Resize input field */
 .pie-row input {
-    flex: 1;
+    flex: 3; /* 30% width */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 0;
 }
 
+/* Resize remove button */
 .pie-row button {
+    flex: 1; /* 10% width */
     padding: 10px;
     border: none;
     border-radius: 6px;
     background-color: #dc3545;
     color: white;
     cursor: pointer;
+    min-width: 0;
 }
 
+/* Remove button hover */
 .pie-row button:hover {
     background-color: #c82333;
 }
