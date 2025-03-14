@@ -10,6 +10,7 @@
 <body>
 
 <div class="container">
+    <!-- Form Container -->
     <div class="form-container">
         <h1>Investment Calculator</h1>
         <form id="investment-form">
@@ -45,12 +46,21 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="contributionTiming">Contribution Timing:</label>
+                <select id="contributionTiming" name="contributionTiming" required>
+                    <option value="beginning">Beginning of Period</option>
+                    <option value="end">End of Period</option>
+                </select>
+            </div>
+
             <button type="submit">Calculate</button>
 
             <div id="result" class="result"></div>
         </form>
     </div>
 
+    <!-- Chart Container -->
     <div class="chart-container">
         <canvas id="investmentChart"></canvas>
     </div>
