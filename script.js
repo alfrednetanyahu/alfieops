@@ -1,22 +1,24 @@
 let chart; // Global chart instance
 
 document.getElementById('investment-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
-    // Get user inputs
+    // Inputs
+    const initialDeposit = parseFloat(document.getElementById('initial').value);
     const years = parseInt(document.getElementById('timeline').value);
     const amount = parseFloat(document.getElementById('amount').value);
     const frequency = document.getElementById('frequency').value;
     const index = document.getElementById('index').value;
 
-    // Set annual return rate based on index choice
-    let annualReturnRate = 0.10; // Default for S&P 500
+    // Rates
+    let annualReturnRate = 0.10;
     if (index === 'qqq') annualReturnRate = 0.12;
+    if (index === 'magnificent7') annualReturnRate = 0.15;
 
     let periods = frequency === 'monthly' ? years * 12 : years;
     let effectiveRate = frequency === 'monthly' ? Math.pow(1 + annualReturnRate, 1 / 12) - 1 : annualReturnRate;
 
-    let futureValue = 0;
+    let futureValue = initialDeposit;
     const dataPoints = [];
     const labels = [];
 
@@ -33,14 +35,11 @@ document.getElementById('investment-form').addEventListener('submit', function(e
 
     futureValue = futureValue.toFixed(2);
 
+    // Display result
     const resultDiv = document.getElementById('result');
-    resultDiv.style.display = 'block';
-    resultDiv.innerHTML = `
-        <h3>Simulation Result</h3>
-        <p>Final Value: <strong>$${futureValue}</strong></p>
-    `;
+    resultDiv.innerHTML = `<h3>Estimated Value: $${futureValue}</h3>`;
 
-    // Render Chart
+    // Render chart
     if (chart) chart.destroy(); // Destroy existing chart
     const ctx = document.getElementById('investmentChart').getContext('2d');
     chart = new Chart(ctx, {
@@ -48,7 +47,7 @@ document.getElementById('investment-form').addEventListener('submit', function(e
         data: {
             labels: labels,
             datasets: [{
-                label: 'Investment Growth Over Time',
+                label: 'Growth Over Time',
                 data: dataPoints,
                 fill: true,
                 borderColor: 'green',
@@ -62,9 +61,7 @@ document.getElementById('investment-form').addEventListener('submit', function(e
                 legend: { display: true }
             },
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                y: { beginAtZero: true }
             }
         }
     });
