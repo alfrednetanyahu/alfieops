@@ -187,45 +187,56 @@ canvas {
     }
 }
 
-/* Clean row alignment */
+/* Proper alignment for pie rows */
 .pie-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
-/* Resize dropdown */
+/* Stock dropdown */
 .pie-row select {
-    flex: 6; /* 60% width */
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    min-width: 0; /* prevent overflow */
-}
-
-/* Resize input field */
-.pie-row input {
-    flex: 3; /* 30% width */
+    flex: 2; /* Take 2 units of space */
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
     min-width: 0;
 }
 
-/* Resize remove button */
-.pie-row button {
-    flex: 1; /* 10% width */
+/* Weight input field */
+.pie-row input {
+    flex: 1; /* Take 1 unit of space */
     padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 0;
+}
+
+/* Remove button properly sized */
+.pie-row button {
+    padding: 10px 14px; /* Add more padding for readability */
     border: none;
     border-radius: 6px;
     background-color: #dc3545;
     color: white;
     cursor: pointer;
-    min-width: 0;
+    white-space: nowrap; /* Prevent breaking */
 }
 
-/* Remove button hover */
+/* Button hover */
 .pie-row button:hover {
     background-color: #c82333;
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 500px) {
+    .pie-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pie-row button {
+        width: 100%; /* Full width on small screens */
+    }
 }
