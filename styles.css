@@ -201,7 +201,7 @@ canvas {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    min-width: 0;
+    min-width: 100px;
 }
 
 /* Weight input field */
@@ -210,7 +210,7 @@ canvas {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    min-width: 0;
+    min-width: 105px;
 }
 
 /* Remove button properly sized */
@@ -221,6 +221,7 @@ canvas {
     background-color: #dc3545;
     color: white;
     cursor: pointer;
+    margin-top: 0; /* Remove margin */
     white-space: nowrap; /* Prevent breaking */
 }
 
