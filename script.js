@@ -127,4 +127,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
             }
         }
     });
+
+    // ✅ Show chart only when generated
+    document.querySelector('.chart-container').style.display = 'block';
 });

@@ -12,7 +12,7 @@ body {
     line-height: 1.6;
 }
 
-/* Main container to hold form and chart side by side */
+/* Main container */
 .container {
     display: flex;
     gap: 30px;
@@ -20,27 +20,23 @@ body {
     align-items: flex-start;
     max-width: 1200px;
     margin: auto;
-    flex-wrap: wrap; /* Stack on small screens */
+    flex-wrap: wrap;
 }
 
 /* Form container */
 .form-container {
     flex: 1;
     min-width: 320px;
-    max-width: 600px;
+    max-width: 400px;
     background: white;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
 }
 
-.form-container:hover {
-    transform: translateY(-4px);
-}
-
-/* Chart container */
+/* Chart container hidden by default */
 .chart-container {
+    display: none;
     flex: 2;
     min-width: 320px;
     max-width: 700px;
@@ -74,30 +70,6 @@ input, select {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-input:focus, select:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-/* Button styling */
-button {
-    width: 100%;
-    padding: 14px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 
 /* Result section */
@@ -111,83 +83,7 @@ button:hover {
     font-size: 16px;
 }
 
-/* Chart size */
-canvas {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 450px;
-    margin-top: 10px;
-}
-
-/* Custom Pie Section */
-#customPieSection h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.pie-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.pie-row select, .pie-row input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-.pie-row button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.pie-row button:hover {
-    background-color: #c82333;
-}
-
-#addStockBtn {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-#addStockBtn:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .chart-container {
-        max-width: 100%;
-    }
-
-    .pie-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .pie-row button {
-        width: 100%;
-    }
-}
-
-/* Proper alignment for pie rows */
+/* Pie row */
 .pie-row {
     display: flex;
     align-items: center;
@@ -195,48 +91,23 @@ canvas {
     margin-bottom: 10px;
 }
 
-/* Stock dropdown */
-.pie-row select {
-    flex: 2; /* Take 2 units of space */
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    min-width: 0;
-}
-
-/* Weight input field */
-.pie-row input {
-    flex: 1; /* Take 1 unit of space */
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    min-width: 0;
-}
-
-/* Remove button properly sized */
+.pie-row select { flex: 3; }
+.pie-row input { flex: 1; }
 .pie-row button {
-    padding: 10px 14px; /* Add more padding for readability */
-    border: none;
-    border-radius: 6px;
+    padding: 10px;
+    min-width: 70px;
+    white-space: nowrap;
     background-color: #dc3545;
     color: white;
+    border-radius: 6px;
+    border: none;
     cursor: pointer;
-    white-space: nowrap; /* Prevent breaking */
 }
 
-/* Button hover */
-.pie-row button:hover {
-    background-color: #c82333;
-}
+.pie-row button:hover { background-color: #c82333; }
 
-/* Responsive fix for small screens */
+/* Responsive */
 @media (max-width: 500px) {
-    .pie-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .pie-row button {
-        width: 100%; /* Full width on small screens */
-    }
+    .pie-row { flex-direction: column; }
+    .pie-row button { width: 100%; }
 }
