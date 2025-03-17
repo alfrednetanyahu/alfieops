@@ -59,6 +59,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     const initialData = [];
     const investedData = [];
     const growthData = [];
+    const labels = [];
     let totalValue = initialDeposit;
     let totalInvested = initialDeposit;
 
