@@ -59,6 +59,8 @@ document.getElementById('investment-form').addEventListener('submit', function (
     const initialData = [];
     const investedData = [];
     const growthData = [];
+    let totalValue = initialDeposit;
+    let totalInvested = initialDeposit;
 
     // Example loop
     for (let i = 1; i <= periods; i++) {
