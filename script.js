@@ -20,6 +20,20 @@ document.getElementById('addStockBtn').addEventListener('click', function () {
     pieBuilder.appendChild(row);
 });
 
+// Handle AI question
+document.getElementById('askAI').addEventListener('click', function () {
+    const question = document.getElementById('aiQuestion').value.trim();
+    const aiAnswerDiv = document.getElementById('aiAnswer');
+
+    if (!question) {
+        aiAnswerDiv.innerHTML = "Please ask a question!";
+        return;
+    }
+
+    // Example placeholder answer (you can replace this with real API call later)
+    aiAnswerDiv.innerHTML = `<strong>AI:</strong> That's a great question! Here's a simple explanation: Compound interest means earning interest on both your original money and the interest it has already earned.`;
+});
+
 // Placeholder S&P 500 stocks
 function getSp500Options() {
     const stocks = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'BRK.B', 'JPM', 'JNJ'];
