@@ -20,20 +20,6 @@ document.getElementById('addStockBtn').addEventListener('click', function () {
     pieBuilder.appendChild(row);
 });
 
-// Handle AI question
-document.getElementById('askAI').addEventListener('click', function () {
-    const question = document.getElementById('aiQuestion').value.trim();
-    const aiAnswerDiv = document.getElementById('aiAnswer');
-
-    if (!question) {
-        aiAnswerDiv.innerHTML = "Please ask a question!";
-        return;
-    }
-
-    // Example placeholder answer (you can replace this with real API call later)
-    aiAnswerDiv.innerHTML = `<strong>AI:</strong> That's a great question! Here's a simple explanation: Compound interest means earning interest on both your original money and the interest it has already earned.`;
-});
-
 // Placeholder S&P 500 stocks
 function getSp500Options() {
     const stocks = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'BRK.B', 'JPM', 'JNJ'];
@@ -70,33 +56,39 @@ document.getElementById('investment-form').addEventListener('submit', function (
     const periods = frequency === 'monthly' ? years * 12 : years;
     const effectiveRate = frequency === 'monthly' ? Math.pow(1 + annualReturnRate, 1 / 12) - 1 : annualReturnRate;
 
-    let totalValue = initialDeposit;
-    let totalInvested = initialDeposit;
-    const growthData = [];
+    const initialData = [];
     const investedData = [];
-    const labels = [];
+    const growthData = [];
 
+    // Example loop
     for (let i = 1; i <= periods; i++) {
         if (contributionTiming === 'beginning') totalValue += amount;
         totalValue *= (1 + effectiveRate);
         if (contributionTiming === 'end') totalValue += amount;
         totalInvested += amount;
 
+        let totalInitial = initialDeposit; // Fixed over time
+        let totalContributions = totalInvested - initialDeposit;
+        let growth = totalValue - totalInvested;
+
+        // Push annual snapshots
         if (frequency === 'monthly' && i % 12 === 0) {
             labels.push(`Year ${i / 12}`);
-            growthData.push((totalValue - totalInvested).toFixed(2));
-            investedData.push(totalInvested.toFixed(2));
+            initialData.push(totalInitial.toFixed(2));
+            investedData.push(totalContributions.toFixed(2));
+            growthData.push(growth.toFixed(2));
         } else if (frequency === 'yearly') {
             labels.push(`Year ${i}`);
-            growthData.push((totalValue - totalInvested).toFixed(2));
-            investedData.push(totalInvested.toFixed(2));
+            initialData.push(totalInitial.toFixed(2));
+            investedData.push(totalContributions.toFixed(2));
+            growthData.push(growth.toFixed(2));
         }
     }
 
     // Display result
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `<h3>Estimated Value: $${totalValue.toFixed(2)}</h3><p>Total Invested: $${totalInvested.toFixed(2)}</p>`;
-
+    
     // Render Chart (as BAR)
     if (chart) chart.destroy();
     const ctx = document.getElementById('investmentChart').getContext('2d');
@@ -106,16 +98,23 @@ document.getElementById('investment-form').addEventListener('submit', function (
             labels: labels,
             datasets: [
                 {
-                    label: 'Invested Amount',
-                    data: investedData,
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    label: 'Initial Deposit',
+                    data: initialData, // Array of initial deposits (can be fixed per year)
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
                     borderColor: 'blue',
                     borderWidth: 1
                 },
                 {
+                    label: 'Invested Amount (Contributions)',
+                    data: investedData, // Contributions accumulated over time (excluding initial)
+                    backgroundColor: 'rgba(255, 206, 86, 0.7)',
+                    borderColor: 'orange',
+                    borderWidth: 1
+                },
+                {
                     label: 'Growth (Interest)',
-                    data: growthData,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    data: growthData, // Pure growth amount
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
                     borderColor: 'green',
                     borderWidth: 1
                 }
@@ -124,13 +123,12 @@ document.getElementById('investment-form').addEventListener('submit', function (
         options: {
             responsive: true,
             plugins: {
-                legend: {
-                    display: true,
-                    labels: { font: { size: 14 } }
-                }
+                legend: { display: true }
             },
             scales: {
+                x: { stacked: true },
                 y: {
+                    stacked: true,
                     beginAtZero: true,
                     ticks: {
                         callback: function (value) {
@@ -141,4 +139,48 @@ document.getElementById('investment-form').addEventListener('submit', function (
             }
         }
     });
+
+    // PIE chart logic
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+
+    // Destroy existing pie chart if any
+    if (window.pieChart) window.pieChart.destroy();
+
+    // Prepare data for pie chart
+    let pieLabels = [];
+    let pieData = [];
+    let pieColors = [];
+
+    if (investmentType === 'index') {
+        pieLabels = [document.getElementById('index').value.toUpperCase()];
+        pieData = [100];
+        pieColors = ['#007BFF'];
+    } else if (investmentType === 'custom') {
+        pieLabels = Array.from(document.querySelectorAll('.pie-row select')).map(sel => sel.value);
+        pieData = Array.from(document.querySelectorAll('.pie-row input')).map(input => parseFloat(input.value));
+        pieColors = pieLabels.map(() => getRandomColor());
+    }
+
+    // Create Pie Chart
+    window.pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: pieLabels,
+            datasets: [{
+                data: pieData,
+                backgroundColor: pieColors
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    // Random color generator for pie segments
+    function getRandomColor() {
+        return `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
+    }
 });
