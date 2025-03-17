@@ -1,4 +1,5 @@
 let chart;
+let pieChart;
 
 // Handle investment type switching
 document.getElementById('investmentType').addEventListener('change', function () {
@@ -147,7 +148,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     const pieCtx = document.getElementById('pieChart').getContext('2d');
 
     // Destroy existing pie chart if any
-    if (window.pieChart) window.pieChart.destroy();
+    if (pieChart) pieChart.destroy();
 
     // Prepare data for pie chart
     let pieLabels = [];
