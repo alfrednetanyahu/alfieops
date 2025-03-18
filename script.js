@@ -1,7 +1,7 @@
 let chart;
 // Reference to global pieChart variable
-let pieChart = null;
-let buyHoldChart = null; // Global reference for Buy & Hold chart
+let pieChart;
+let buyHoldChart; // Global reference for Buy & Hold chart
 
 // Handle investment type switching
 document.getElementById('investmentType').addEventListener('change', function () {
