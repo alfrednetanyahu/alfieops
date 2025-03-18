@@ -148,6 +148,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
 
     function updatePieChart() {
         const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const investmentType = document.getElementById('investmentType').value;
     
         // ✅ Ensure container is visible
         document.getElementById('pieChart').parentElement.style.display = 'block';
@@ -207,6 +208,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     // ✅ Update Buy & Hold chart
     function updateBuyHoldChart(initialDeposit, returnRate, years) {
         const buyHoldCtx = document.getElementById('buyHoldChart').getContext('2d');
+        const investmentType = document.getElementById('investmentType').value;
 
         // ✅ Ensure container is visible
         document.getElementById('buyHoldChart').parentElement.style.display = 'block';
