@@ -1,7 +1,7 @@
 let chart;
 // Reference to global pieChart variable
 let pieChart = null;
-
+let buyHoldChart = null; // Global reference for Buy & Hold chart
 
 // Handle investment type switching
 document.getElementById('investmentType').addEventListener('change', function () {
@@ -200,4 +200,80 @@ document.getElementById('investment-form').addEventListener('submit', function (
     function getRandomColor() {
         return `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`;
     }
+
+    // ✅ Update Buy & Hold chart
+    function updateBuyHoldChart(initialDeposit, returnRate, years) {
+        const buyHoldCtx = document.getElementById('buyHoldChart').getContext('2d');
+
+        // ✅ Destroy existing chart before creating a new one
+        if (buyHoldChart) {
+            buyHoldChart.destroy();
+        }
+
+        let labels = [];
+        let buyHoldData = [];
+
+        let totalValue = initialDeposit;
+        
+        for (let i = 1; i <= years; i++) {
+            totalValue *= (1 + returnRate);
+            labels.push(`Year ${i}`);
+            buyHoldData.push(totalValue.toFixed(2));
+        }
+
+        // ✅ Create the Buy & Hold Line Chart
+        buyHoldChart = new Chart(buyHoldCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Buy & Hold Growth',
+                    data: buyHoldData,
+                    borderColor: 'purple',
+                    backgroundColor: 'rgba(128, 0, 128, 0.2)',
+                    fill: true,
+                    tension: 0.1,
+                    borderWidth: 2,
+                    pointRadius: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function (value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // ✅ Modify form submission to call Buy & Hold chart update
+    document.getElementById('investment-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const initialDeposit = parseFloat(document.getElementById('initial').value);
+        const years = parseInt(document.getElementById('timeline').value);
+        const investmentType = document.getElementById('investmentType').value;
+        let returnRate = 0.10;
+
+        if (investmentType === 'index') {
+            const index = document.getElementById('index').value;
+            if (index === 'qqq') returnRate = 0.12;
+            if (index === 'magnificent7') returnRate = 0.15;
+        } else {
+            returnRate = 0.20; // Custom pie assumed 20% return for now
+        }
+
+        updateBuyHoldChart(initialDeposit, returnRate, years); // ✅ Update Buy & Hold graph
+    });
+
 });
