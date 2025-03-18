@@ -1,7 +1,7 @@
 let chart;
 // Reference to global pieChart variable
-let pieChart;
-let buyHoldChart; // Global reference for Buy & Hold chart
+let pieChart = null;
+let buyHoldChart = null; // Global reference for Buy & Hold chart
 
 // Handle investment type switching
 document.getElementById('investmentType').addEventListener('change', function () {
@@ -149,6 +149,9 @@ document.getElementById('investment-form').addEventListener('submit', function (
     function updatePieChart() {
         const pieCtx = document.getElementById('pieChart').getContext('2d');
     
+        // ✅ Ensure container is visible
+        document.getElementById('pieChart').parentElement.style.display = 'block';
+
         // ✅ Fix: Destroy the existing pie chart if it exists
         if (pieChart) {
             pieChart.destroy();
@@ -205,6 +208,9 @@ document.getElementById('investment-form').addEventListener('submit', function (
     function updateBuyHoldChart(initialDeposit, returnRate, years) {
         const buyHoldCtx = document.getElementById('buyHoldChart').getContext('2d');
 
+        // ✅ Ensure container is visible
+        document.getElementById('buyHoldChart').parentElement.style.display = 'block';
+
         // ✅ Destroy existing chart before creating a new one
         if (buyHoldChart) {
             buyHoldChart.destroy();
@@ -219,6 +225,12 @@ document.getElementById('investment-form').addEventListener('submit', function (
             totalValue *= (1 + returnRate);
             labels.push(`Year ${i}`);
             buyHoldData.push(totalValue.toFixed(2));
+        }
+
+        // ✅ Ensure chart only renders if data exists
+        if (buyHoldData.length === 0) {
+            console.error("Buy & Hold data is empty!");
+            return;
         }
 
         // ✅ Create the Buy & Hold Line Chart
