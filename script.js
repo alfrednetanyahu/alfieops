@@ -1,5 +1,7 @@
 let chart;
-let pieChart;
+// Reference to global pieChart variable
+let pieChart = null;
+
 
 // Handle investment type switching
 document.getElementById('investmentType').addEventListener('change', function () {
@@ -144,43 +146,54 @@ document.getElementById('investment-form').addEventListener('submit', function (
         }
     });
 
-    // PIE chart logic
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
-
-    // Destroy existing pie chart if any
-    if (pieChart) pieChart.destroy();
-
-    // Prepare data for pie chart
-    let pieLabels = [];
-    let pieData = [];
-    let pieColors = [];
-
-    if (investmentType === 'index') {
-        pieLabels = [document.getElementById('index').value.toUpperCase()];
-        pieData = [100];
-        pieColors = ['#007BFF'];
-    } else if (investmentType === 'custom') {
-        pieLabels = Array.from(document.querySelectorAll('.pie-row select')).map(sel => sel.value);
-        pieData = Array.from(document.querySelectorAll('.pie-row input')).map(input => parseFloat(input.value));
-        pieColors = pieLabels.map(() => getRandomColor());
-    }
-
-    // Create Pie Chart
-    window.pieChart = new Chart(pieCtx, {
-        type: 'pie',
-        data: {
-            labels: pieLabels,
-            datasets: [{
-                data: pieData,
-                backgroundColor: pieColors
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'bottom' }
-            }
+    function updatePieChart() {
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+    
+        // ✅ Fix: Destroy the existing pie chart if it exists
+        if (pieChart) {
+            pieChart.destroy();
         }
+    
+        let pieLabels = [];
+        let pieData = [];
+        let pieColors = [];
+    
+        if (investmentType === 'index') {
+            pieLabels = [document.getElementById('index').value.toUpperCase()];
+            pieData = [100];
+            pieColors = ['#007BFF'];
+        } else if (investmentType === 'custom') {
+            pieLabels = Array.from(document.querySelectorAll('.pie-row select')).map(sel => sel.value);
+            pieData = Array.from(document.querySelectorAll('.pie-row input')).map(input => parseFloat(input.value));
+            pieColors = pieLabels.map(() => getRandomColor());
+        }
+    
+        // ✅ Fix: Create a new pie chart after destroying the old one
+        pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: pieLabels,
+                datasets: [{
+                    data: pieData,
+                    backgroundColor: pieColors
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    }
+    
+    // ✅ Ensure the pie chart updates on form submit
+    document.getElementById('investment-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+    
+        // Other investment calculations...
+        
+        updatePieChart(); // ✅ Update Pie Chart dynamically
     });
 
     // Random color generator for pie segments
