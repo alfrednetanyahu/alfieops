@@ -146,61 +146,61 @@ document.getElementById('investment-form').addEventListener('submit', function (
         }
     });
 
-    updatePieChart(); // ✅ Update Pie Chart dynamically
+    // updatePieChart(); // ✅ Update Pie Chart dynamically
 
-    updateBuyHoldChart(initialDeposit, annualReturnRate, years); // ✅ Update Buy & Hold graph
+    // updateBuyHoldChart(initialDeposit, annualReturnRate, years); // ✅ Update Buy & Hold graph
 
-    function updatePieChart() {
-        const pieCtx = document.getElementById('pieChart').getContext('2d');
-        const investmentType = document.getElementById('investmentType').value;
-    
-        // ✅ Ensure container is visible
-        document.getElementById('pieChart').parentElement.style.display = 'block';
+    // function updatePieChart() {
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    // const investmentType = document.getElementById('investmentType').value;
 
-        // ✅ Fix: Destroy the existing pie chart if it exists
-        // if (pieChart) {pieChart.destroy();}
-    
-        let pieLabels = [];
-        let pieData = [];
-        let pieColors = [];
-    
-        if (investmentType === 'index') {
-            pieLabels = [document.getElementById('index').value.toUpperCase()];
-            pieData = [100];
-            pieColors = ['#007BFF'];
-        } else if (investmentType === 'custom') {
-            pieLabels = Array.from(document.querySelectorAll('.pie-row select')).map(sel => sel.value);
-            pieData = Array.from(document.querySelectorAll('.pie-row input')).map(input => parseFloat(input.value));
-            pieColors = pieLabels.map(() => getRandomColor());
-        }
-    
-        // ✅ Fix: Create a new pie chart after destroying the old one
-        pieChart = new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: pieLabels,
-                datasets: [{
-                    data: pieData,
-                    backgroundColor: pieColors
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
+    // ✅ Ensure container is visible
+    document.getElementById('pieChart').parentElement.style.display = 'block';
+
+    // ✅ Fix: Destroy the existing pie chart if it exists
+    // if (pieChart) {pieChart.destroy();}
+
+    let pieLabels = [];
+    let pieData = [];
+    let pieColors = [];
+
+    if (investmentType === 'index') {
+        pieLabels = [document.getElementById('index').value.toUpperCase()];
+        pieData = [100];
+        pieColors = ['#007BFF'];
+    } else if (investmentType === 'custom') {
+        pieLabels = Array.from(document.querySelectorAll('.pie-row select')).map(sel => sel.value);
+        pieData = Array.from(document.querySelectorAll('.pie-row input')).map(input => parseFloat(input.value));
+        pieColors = pieLabels.map(() => getRandomColor());
     }
+
+    // ✅ Fix: Create a new pie chart after destroying the old one
+    pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: pieLabels,
+            datasets: [{
+                data: pieData,
+                backgroundColor: pieColors
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+    // }
     
     // ✅ Ensure the pie chart updates on form submit
-    document.getElementById('investment-form').addEventListener('submit', function (e) {
-        e.preventDefault();
+    // document.getElementById('investment-form').addEventListener('submit', function (e) {
+    //     e.preventDefault();
     
-        // Other investment calculations...
+    //     // Other investment calculations...
         
-        updatePieChart(); // ✅ Update Pie Chart dynamically
-    });
+    //     updatePieChart(); // ✅ Update Pie Chart dynamically
+    // });
 
     // Random color generator for pie segments
     function getRandomColor() {
@@ -208,86 +208,86 @@ document.getElementById('investment-form').addEventListener('submit', function (
     }
 
     // ✅ Update Buy & Hold chart
-    function updateBuyHoldChart(initialDeposit, returnRate, years) {
-        const buyHoldCtx = document.getElementById('buyHoldChart').getContext('2d');
-        const investmentType = document.getElementById('investmentType').value;
+    // function updateBuyHoldChart(initialDeposit, returnRate, years) {
+    const buyHoldCtx = document.getElementById('buyHoldChart').getContext('2d');
+    // const investmentType = document.getElementById('investmentType').value;
 
-        // ✅ Ensure container is visible
-        document.getElementById('buyHoldChart').parentElement.style.display = 'block';
+    // ✅ Ensure container is visible
+    document.getElementById('buyHoldChart').parentElement.style.display = 'block';
 
-        // ✅ Destroy existing chart before creating a new one
-        // if (buyHoldChart) {buyHoldChart.destroy();}
+    // ✅ Destroy existing chart before creating a new one
+    // if (buyHoldChart) {buyHoldChart.destroy();}
 
-        let labels = [];
-        let buyHoldData = [];
+    // let labels = [];
+    // let buyHoldData = [];
 
-        let totalValue = initialDeposit;
-        
-        for (let i = 1; i <= years; i++) {
-            totalValue *= (1 + returnRate);
-            labels.push(`Year ${i}`);
-            buyHoldData.push(totalValue.toFixed(2));
-        }
+    // let totalValue = initialDeposit;
+    
+    for (let i = 1; i <= years; i++) {
+        totalValue *= (1 + returnRate);
+        labels.push(`Year ${i}`);
+        buyHoldData.push(totalValue.toFixed(2));
+    }
 
-        // ✅ Ensure chart only renders if data exists
-        if (buyHoldData.length === 0) {
-            console.error("Buy & Hold data is empty!");
-            return;
-        }
+    // ✅ Ensure chart only renders if data exists
+    if (buyHoldData.length === 0) {
+        console.error("Buy & Hold data is empty!");
+        return;
+    }
 
-        // ✅ Create the Buy & Hold Line Chart
-        buyHoldChart = new Chart(buyHoldCtx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Buy & Hold Growth',
-                    data: buyHoldData,
-                    borderColor: 'purple',
-                    backgroundColor: 'rgba(128, 0, 128, 0.2)',
-                    fill: true,
-                    tension: 0.1,
-                    borderWidth: 2,
-                    pointRadius: 3
-                }]
+    // ✅ Create the Buy & Hold Line Chart
+    buyHoldChart = new Chart(buyHoldCtx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Buy & Hold Growth',
+                data: buyHoldData,
+                borderColor: 'purple',
+                backgroundColor: 'rgba(128, 0, 128, 0.2)',
+                fill: true,
+                tension: 0.1,
+                borderWidth: 2,
+                pointRadius: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: true }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        ticks: {
-                            callback: function (value) {
-                                return '$' + value.toLocaleString();
-                            }
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    ticks: {
+                        callback: function (value) {
+                            return '$' + value.toLocaleString();
                         }
                     }
                 }
             }
-        });
-    }
+        }
+    });
+    // }
 
     // ✅ Modify form submission to call Buy & Hold chart update
-    document.getElementById('investment-form').addEventListener('submit', function (e) {
-        e.preventDefault();
+    // document.getElementById('investment-form').addEventListener('submit', function (e) {
+    //     e.preventDefault();
 
-        const initialDeposit = parseFloat(document.getElementById('initial').value);
-        const years = parseInt(document.getElementById('timeline').value);
-        const investmentType = document.getElementById('investmentType').value;
-        let returnRate = 0.10;
+    //     const initialDeposit = parseFloat(document.getElementById('initial').value);
+    //     const years = parseInt(document.getElementById('timeline').value);
+    //     const investmentType = document.getElementById('investmentType').value;
+    //     let returnRate = 0.10;
 
-        if (investmentType === 'index') {
-            const index = document.getElementById('index').value;
-            if (index === 'qqq') returnRate = 0.12;
-            if (index === 'magnificent7') returnRate = 0.15;
-        } else {
-            returnRate = 0.20; // Custom pie assumed 20% return for now
-        }
+    //     if (investmentType === 'index') {
+    //         const index = document.getElementById('index').value;
+    //         if (index === 'qqq') returnRate = 0.12;
+    //         if (index === 'magnificent7') returnRate = 0.15;
+    //     } else {
+    //         returnRate = 0.20; // Custom pie assumed 20% return for now
+    //     }
 
-        updateBuyHoldChart(initialDeposit, returnRate, years); // ✅ Update Buy & Hold graph
-    });
+    //     updateBuyHoldChart(initialDeposit, returnRate, years); // ✅ Update Buy & Hold graph
+    // });
 
 });
