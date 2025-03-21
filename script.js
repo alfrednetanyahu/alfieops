@@ -219,7 +219,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     if (buyHoldChart) {buyHoldChart.destroy();}
 
     // let labels = [];
-    // let buyHoldData = [];
+    let buyHoldData = [];
 
     // let totalValue = initialDeposit;
     
