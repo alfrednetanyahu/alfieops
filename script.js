@@ -96,7 +96,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     resultDiv.innerHTML = `<h3>Estimated Value: $${totalValue.toFixed(2)}</h3><p>Total Invested: $${totalInvested.toFixed(2)}</p>`;
     
     // Render Chart (as BAR)
-    if (chart) chart.destroy();
+    // if (chart) chart.destroy();
     const ctx = document.getElementById('investmentChart').getContext('2d');
     chart = new Chart(ctx, {
         type: 'bar',
@@ -154,9 +154,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
         document.getElementById('pieChart').parentElement.style.display = 'block';
 
         // ✅ Fix: Destroy the existing pie chart if it exists
-        if (pieChart) {
-            pieChart.destroy();
-        }
+        // if (pieChart) {pieChart.destroy();}
     
         let pieLabels = [];
         let pieData = [];
@@ -214,9 +212,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
         document.getElementById('buyHoldChart').parentElement.style.display = 'block';
 
         // ✅ Destroy existing chart before creating a new one
-        if (buyHoldChart) {
-            buyHoldChart.destroy();
-        }
+        // if (buyHoldChart) {buyHoldChart.destroy();}
 
         let labels = [];
         let buyHoldData = [];
