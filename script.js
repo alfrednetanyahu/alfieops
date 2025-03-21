@@ -218,14 +218,14 @@ document.getElementById('investment-form').addEventListener('submit', function (
     // ✅ Destroy existing chart before creating a new one
     if (buyHoldChart) {buyHoldChart.destroy();}
 
-    // let labels = [];
+    let buyHoldChartlabels = [];
     let buyHoldData = [];
 
     // let totalValue = initialDeposit;
     
     for (let i = 1; i <= years; i++) {
         totalValue *= (1 + annualReturnRate);
-        labels.push(`Year ${i}`);
+        buyHoldChartlabels.push(`Year ${i}`);
         buyHoldData.push(totalValue.toFixed(2));
     }
 
