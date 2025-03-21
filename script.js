@@ -220,13 +220,14 @@ document.getElementById('investment-form').addEventListener('submit', function (
 
     let buyHoldChartlabels = [];
     let buyHoldData = [];
+    let buyHoldtotalValue = initialDeposit;
 
     let returnRate = 0.12;
     
     for (let i = 1; i <= years; i++) {
-        totalValue *= (1 + returnRate);
+        buyHoldtotalValue *= (1 + returnRate);
         buyHoldChartlabels.push(`Year ${i}`);
-        buyHoldData.push(totalValue.toFixed(2));
+        buyHoldData.push(buyHoldtotalValue.toFixed(2));
     }
 
     // ✅ Ensure chart only renders if data exists
