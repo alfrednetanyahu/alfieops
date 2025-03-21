@@ -146,6 +146,10 @@ document.getElementById('investment-form').addEventListener('submit', function (
         }
     });
 
+    updatePieChart(); // ✅ Update Pie Chart dynamically
+
+    updateBuyHoldChart(initialDeposit, annualReturnRate, years); // ✅ Update Buy & Hold graph
+
     function updatePieChart() {
         const pieCtx = document.getElementById('pieChart').getContext('2d');
         const investmentType = document.getElementById('investmentType').value;
@@ -190,13 +194,13 @@ document.getElementById('investment-form').addEventListener('submit', function (
     }
     
     // ✅ Ensure the pie chart updates on form submit
-    document.getElementById('investment-form').addEventListener('submit', function (e) {
-        e.preventDefault();
+    // document.getElementById('investment-form').addEventListener('submit', function (e) {
+    //     e.preventDefault();
     
-        // Other investment calculations...
+    //     // Other investment calculations...
         
-        updatePieChart(); // ✅ Update Pie Chart dynamically
-    });
+    //     updatePieChart(); // ✅ Update Pie Chart dynamically
+    // });
 
     // Random color generator for pie segments
     function getRandomColor() {
@@ -267,23 +271,23 @@ document.getElementById('investment-form').addEventListener('submit', function (
     }
 
     // ✅ Modify form submission to call Buy & Hold chart update
-    document.getElementById('investment-form').addEventListener('submit', function (e) {
-        e.preventDefault();
+    // document.getElementById('investment-form').addEventListener('submit', function (e) {
+    //     e.preventDefault();
 
-        const initialDeposit = parseFloat(document.getElementById('initial').value);
-        const years = parseInt(document.getElementById('timeline').value);
-        const investmentType = document.getElementById('investmentType').value;
-        let returnRate = 0.10;
+    //     const initialDeposit = parseFloat(document.getElementById('initial').value);
+    //     const years = parseInt(document.getElementById('timeline').value);
+    //     const investmentType = document.getElementById('investmentType').value;
+    //     let returnRate = 0.10;
 
-        if (investmentType === 'index') {
-            const index = document.getElementById('index').value;
-            if (index === 'qqq') returnRate = 0.12;
-            if (index === 'magnificent7') returnRate = 0.15;
-        } else {
-            returnRate = 0.20; // Custom pie assumed 20% return for now
-        }
+    //     if (investmentType === 'index') {
+    //         const index = document.getElementById('index').value;
+    //         if (index === 'qqq') returnRate = 0.12;
+    //         if (index === 'magnificent7') returnRate = 0.15;
+    //     } else {
+    //         returnRate = 0.20; // Custom pie assumed 20% return for now
+    //     }
 
-        updateBuyHoldChart(initialDeposit, returnRate, years); // ✅ Update Buy & Hold graph
-    });
+    //     updateBuyHoldChart(initialDeposit, returnRate, years); // ✅ Update Buy & Hold graph
+    // });
 
 });
