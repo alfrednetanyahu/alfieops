@@ -44,6 +44,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     // Get return based on type
     if (investmentType === 'index') {
         const index = document.getElementById('index').value;
+        if (index === 'sp500') annualReturnRate = 0.10;
         if (index === 'qqq') annualReturnRate = 0.12;
         if (index === 'magnificent7') annualReturnRate = 0.15;
     } else if (investmentType === 'custom') {
@@ -225,7 +226,7 @@ document.getElementById('investment-form').addEventListener('submit', function (
     
     for (let i = 1; i <= years; i++) {
         buyHoldtotalValue += amount;
-        buyHoldtotalValue *= (1 + returnRate);
+        buyHoldtotalValue *= (1 + annualReturnRate);
         buyHoldChartlabels.push(`Year ${i}`);
         buyHoldData.push(buyHoldtotalValue.toFixed(2));
     }
