@@ -222,9 +222,9 @@ document.getElementById('investment-form').addEventListener('submit', function (
     let buyHoldData = [];
     let buyHoldtotalValue = initialDeposit;
 
-    let returnRate = 0.12;
     
     for (let i = 1; i <= years; i++) {
+        buyHoldtotalValue += amount;
         buyHoldtotalValue *= (1 + returnRate);
         buyHoldChartlabels.push(`Year ${i}`);
         buyHoldData.push(buyHoldtotalValue.toFixed(2));
