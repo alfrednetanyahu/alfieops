@@ -3,86 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Calculator</title>
+    <title>Financial Calculator Suite</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<!-- Background Overlay -->
+<div class="background-overlay"></div>
+
+<!-- Navigation Tabs -->
+<nav class="tab-navigation">
+    <ul>
+        <li class="tab active" data-tab="investment">Investment Calculator</li>
+        <li class="tab" data-tab="loan">Loan Calculator</li>
+        <li class="tab" data-tab="mortgage">Mortgage Calculator</li>
+        <li class="tab" data-tab="tax">Income Tax Calculator</li>
+    </ul>
+</nav>
+
+<!-- Main Content -->
 <div class="container">
-    <!-- Form Section -->
-    <div class="form-container">
-        <h1>Investment Calculator</h1>
-        <form id="investment-form">
-            <div class="form-group">
-                <label for="initial">Initial Deposit ($):</label>
-                <input type="number" id="initial" name="initial" min="0" value="0" required>
-            </div>
+    <!-- Investment Calculator (Default Visible Tab) -->
+    <div id="investment" class="tab-content active">
+        <div class="form-container">
+            <h1>Investment Calculator</h1>
+            <form id="investment-form">
+                <div class="form-group">
+                    <label for="initial">Initial Deposit ($):</label>
+                    <input type="number" id="initial" name="initial" min="0" value="0" required>
+                </div>
 
-            <div class="form-group">
-                <label for="amount">Periodic Investment Amount ($):</label>
-                <input type="number" id="amount" name="amount" min="1" required>
-            </div>
+                <div class="form-group">
+                    <label for="amount">Periodic Investment Amount ($):</label>
+                    <input type="number" id="amount" name="amount" min="1" required>
+                </div>
 
-            <div class="form-group">
-                <label for="frequency">Investment Frequency:</label>
-                <select id="frequency" name="frequency" required>
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="frequency">Investment Frequency:</label>
+                    <select id="frequency" name="frequency" required>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="timeline">Investment Timeline (years):</label>
-                <input type="number" id="timeline" name="timeline" min="1" required>
-            </div>
+                <div class="form-group">
+                    <label for="timeline">Investment Timeline (years):</label>
+                    <input type="number" id="timeline" name="timeline" min="1" required>
+                </div>
 
-            <div class="form-group">
-                <label for="contributionTiming">Contribution Timing:</label>
-                <select id="contributionTiming" name="contributionTiming" required>
-                    <option value="beginning">Beginning of Period</option>
-                    <option value="end">End of Period</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="contributionTiming">Contribution Timing:</label>
+                    <select id="contributionTiming" name="contributionTiming" required>
+                        <option value="beginning">Beginning of Period</option>
+                        <option value="end">End of Period</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="investmentType">Investment Type:</label>
-                <select id="investmentType" name="investmentType" required>
-                    <option value="index">Index (S&P 500, QQQ, Magnificent 7)</option>
-                    <option value="custom">Custom Stock Pie</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="investmentType">Investment Type:</label>
+                    <select id="investmentType" name="investmentType" required>
+                        <option value="index">Index (S&P 500, QQQ, Magnificent 7)</option>
+                        <option value="custom">Custom Stock Pie</option>
+                    </select>
+                </div>
 
-            <!-- Index selection -->
-            <div id="indexSection" class="form-group">
-                <label for="index">Choose Index:</label>
-                <select id="index" name="index">
-                    <option value="sp500">S&P 500 (Avg 10%)</option>
-                    <option value="qqq">QQQ (Avg 12%)</option>
-                    <option value="magnificent7">Magnificent 7 (Est. 15%)</option>
-                </select>
-            </div>
+                <!-- Index selection -->
+                <div id="indexSection" class="form-group">
+                    <label for="index">Choose Index:</label>
+                    <select id="index" name="index">
+                        <option value="sp500">S&P 500 (Avg 10%)</option>
+                        <option value="qqq">QQQ (Avg 12%)</option>
+                        <option value="magnificent7">Magnificent 7 (Est. 15%)</option>
+                    </select>
+                </div>
 
-            <!-- Custom Pie Section -->
-            <div id="customPieSection" style="display: none;">
-                <h3>Build Your Stock Pie</h3>
-                <div id="pieBuilder"></div>
-                <button type="button" id="addStockBtn">Add Stock</button>
-                <p><em>Note: Assuming 20% return for pie until real data is connected.</em></p>
-            </div>
+                <!-- Custom Pie Section -->
+                <div id="customPieSection" class="hidden">
+                    <h3>Build Your Stock Pie</h3>
+                    <div id="pieBuilder"></div>
+                    <button type="button" id="addStockBtn">Add Stock</button>
+                    <p><em>Note: Assuming 20% return for pie until real data is connected.</em></p>
+                </div>
 
-            <button type="submit">Calculate</button>
-            <div id="result" class="result"></div>
-        </form>
+                <!-- Sign-Up Prompt -->
+                <div id="signupSection" class="hidden">
+                    <h3>Sign Up to Save Your Portfolio</h3>
+                    <div class="form-group">
+                        <label for="name">First Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Last Name:</label>
+                        <input type="text" id="surname" name="surname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <button type="submit">Calculate</button>
+                <div id="result" class="result"></div>
+            </form>
+        </div>
+
+        <!-- Charts -->
+        <div class="chart-container">
+            <canvas id="investmentChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="buyHoldChart"></canvas>
+        </div>
     </div>
 
-    <!-- Chart Section -->
-    <div class="chart-container">
-        <canvas id="investmentChart"></canvas>
-        <canvas id="pieChart"></canvas>
-        <canvas id="buyHoldChart"></canvas>
+    <!-- Other tabs (to be implemented) -->
+    <div id="loan" class="tab-content hidden">
+        <h2>Loan Calculator (Coming Soon)</h2>
     </div>
-
+    <div id="mortgage" class="tab-content hidden">
+        <h2>Mortgage Calculator (Coming Soon)</h2>
+    </div>
+    <div id="tax" class="tab-content hidden">
+        <h2>Income Tax Calculator (Coming Soon)</h2>
+    </div>
 </div>
 
 <script src="script.js"></script>
