@@ -238,15 +238,15 @@ document.getElementById('investment-form').addEventListener('submit', function (
         let buyHoldInitial = initialDeposit; // Fixed over time
         let totalContributions = buyHoldtotalInvested - initialDeposit;
         let growth = buyHoldtotalValue - buyHoldtotalInvested;
-    }
-    
-    if (frequency === 'monthly' && i % 12 === 0) {
-        buyHoldChartlabels.push(`Year ${i / 12}`);
-        buyHoldData.push(buyHoldtotalValue.toFixed(2));
-
-    } else if (frequency === 'yearly') {
-        buyHoldChartlabels.push(`Year ${i}`);
-        buyHoldData.push(buyHoldtotalValue.toFixed(2));
+        
+        if (frequency === 'monthly' && i % 12 === 0) {
+            buyHoldChartlabels.push(`Year ${i / 12}`);
+            buyHoldData.push(buyHoldtotalValue.toFixed(2));
+            
+        } else if (frequency === 'yearly') {
+            buyHoldChartlabels.push(`Year ${i}`);
+            buyHoldData.push(buyHoldtotalValue.toFixed(2));
+        }
     }
     
     // for (let i = 1; i <= years; i++) {
