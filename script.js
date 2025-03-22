@@ -222,14 +222,39 @@ document.getElementById('investment-form').addEventListener('submit', function (
     let buyHoldChartlabels = [];
     let buyHoldData = [];
     let buyHoldtotalValue = initialDeposit;
+    let buyHoldtotalInvested = initialDeposit;
 
+    const buyHoldperiods = frequency === 'monthly' ? years * 12 : years;
+    const buyHoldeffectiveRate = frequency === 'monthly' ? Math.pow(1 + annualReturnRate, 1 / 12) - 1 : annualReturnRate;
+
+
+    // Example loop
+    for (let i = 1; i <= buyHoldperiods; i++) {
+        if (contributionTiming === 'beginning') buyHoldtotalValue += amount;
+        buyHoldtotalValue *= (1 + buyHoldeffectiveRate);
+        if (contributionTiming === 'end') buyHoldtotalValue += amount;
+        buyHoldtotalInvested += amount;
+
+        let buyHoldInitial = initialDeposit; // Fixed over time
+        let totalContributions = buyHoldtotalInvested - initialDeposit;
+        let growth = buyHoldtotalValue - buyHoldtotalInvested;
+    }
     
-    for (let i = 1; i <= years; i++) {
-        buyHoldtotalValue += amount;
-        buyHoldtotalValue *= (1 + annualReturnRate);
+    if (frequency === 'monthly' && i % 12 === 0) {
+        buyHoldChartlabels.push(`Year ${i / 12}`);
+        buyHoldData.push(buyHoldtotalValue.toFixed(2));
+
+    } else if (frequency === 'yearly') {
         buyHoldChartlabels.push(`Year ${i}`);
         buyHoldData.push(buyHoldtotalValue.toFixed(2));
     }
+    
+    // for (let i = 1; i <= years; i++) {
+    //     buyHoldtotalValue += amount;
+    //     buyHoldtotalValue *= (1 + annualReturnRate);
+    //     buyHoldChartlabels.push(`Year ${i}`);
+    //     buyHoldData.push(buyHoldtotalValue.toFixed(2));
+    // }
 
     // ✅ Ensure chart only renders if data exists
     if (buyHoldData.length === 0) {
