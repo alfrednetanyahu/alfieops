@@ -7,7 +7,7 @@
 }
 
 body {
-    background: url('https://source.unsplash.com/1600x900/?finance,stocks') no-repeat center center fixed;
+    background: url('assets/finance.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
     color: white;
@@ -55,92 +55,235 @@ body {
 /* Main Container */
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 30px auto;
-    max-width: 900px;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap; /* Stack on small screens */
 }
 
-/* Form Styling */
+/* Form container */
 .form-container {
-    background: rgba(255, 255, 255, 0.2);
+    flex: 1;
+    min-width: 320px;
+    max-width: 400px;
+    background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
-h1, h2 {
+.form-container:hover {
+    transform: translateY(-4px);
+}
+
+/* Chart container */
+.chart-container {
+    flex: 2;
+    min-width: 320px;
+    max-width: 700px;
+    /* background: white; */
+    padding: 20px;
+    border-radius: 12px;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
+
+/* Form elements */
+h1 {
     text-align: center;
+    margin-bottom: 25px;
+    font-size: 24px;
 }
 
-/* Form Groups */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #333;
 }
 
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    border: none;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-/* Button */
+input:focus, select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Button styling */
 button {
     width: 100%;
-    padding: 12px;
-    background: #007BFF;
+    padding: 14px;
+    background-color: #007BFF;
     color: white;
     font-size: 16px;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 button:hover {
-    background: #0056b3;
+    background-color: #0056b3;
 }
 
-/* Hide Sections by Default */
-.hidden {
-    display: none;
-}
-
-/* Chart Container */
-.chart-container {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+/* Result section */
+.result {
     margin-top: 20px;
-    width: 100%;
-    display: none;
+    padding: 16px;
+    background-color: #e9f7ef;
+    border: 2px solid #c3e6cb;
+    border-radius: 8px;
+    color: #155724;
+    font-size: 16px;
 }
 
+/* Chart size */
 canvas {
     width: 100% !important;
     height: auto !important;
+    max-height: 450px;
+    margin-top: 10px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .tab-navigation ul {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Custom Pie Section */
+#customPieSection h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 
-    .form-container {
-        width: 90%;
+.pie-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pie-row select, .pie-row input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.pie-row button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pie-row button:hover {
+    background-color: #c82333;
+}
+
+#addStockBtn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#addStockBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .chart-container {
-        width: 90%;
+        max-width: 100%;
     }
+
+    .pie-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pie-row button {
+        width: 100%;
+    }
+}
+
+/* Proper alignment for pie rows */
+.pie-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Stock dropdown */
+.pie-row select {
+    flex: 2; /* Take 2 units of space */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 100px;
+}
+
+/* Weight input field */
+.pie-row input {
+    flex: 1; /* Take 1 unit of space */
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-width: 105px;
+}
+
+/* Remove button properly sized */
+.pie-row button {
+    padding: 10px 14px; /* Add more padding for readability */
+    border: none;
+    border-radius: 6px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    margin-top: 0; /* Remove margin */
+    white-space: nowrap; /* Prevent breaking */
+}
+
+/* Button hover */
+.pie-row button:hover {
+    background-color: #c82333;
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 500px) {
+    .pie-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pie-row button {
+        width: 100%; /* Full width on small screens */
+    }
+}
+
+/* Ensure pie chart doesn't overflow */
+#pieChart {
+    max-width: 400px;
+    margin: 0 auto;
 }
