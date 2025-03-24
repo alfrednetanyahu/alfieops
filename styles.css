@@ -287,3 +287,8 @@ canvas {
     max-width: 400px;
     margin: 0 auto;
 }
+
+/* Hide Sections by Default */
+.hidden {
+    display: none;
+}

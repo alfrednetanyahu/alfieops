@@ -29,6 +29,7 @@ document.getElementById('investmentType').addEventListener('change', function ()
     document.getElementById('indexSection').style.display = type === 'index' ? 'block' : 'none';
     document.getElementById('customPieSection').style.display = type === 'custom' ? 'block' : 'none';
 });
+
 // Add stock to pie dynamically
 document.getElementById('addStockBtn').addEventListener('click', function () {
     const pieBuilder = document.getElementById('pieBuilder');
