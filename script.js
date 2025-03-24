@@ -23,9 +23,9 @@ document.getElementById('investmentType').addEventListener('change', function ()
     document.getElementById('customPieSection').style.display = isCustom ? 'block' : 'none';
     document.getElementById('signupSection').style.display = isCustom ? 'block' : 'none';
 
-    document.getElementById('name').required = isCustom;
-    document.getElementById('surname').required = isCustom;
-    document.getElementById('email').required = isCustom;
+    document.getElementById('name').required = false;
+    document.getElementById('surname').required = false;
+    document.getElementById('email').required = false;
 });
 
 document.getElementById('investmentType').addEventListener('change', function () {
