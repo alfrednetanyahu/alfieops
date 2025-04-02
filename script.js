@@ -21,7 +21,6 @@ document.querySelectorAll('.tab').forEach(tab => {
 document.getElementById('investmentType').addEventListener('change', function () {
     const isCustom = this.value === 'custom';
     document.getElementById('customPieSection').style.display = isCustom ? 'block' : 'none';
-    document.getElementById('signupSection').style.display = isCustom ? 'block' : 'none';
 
     document.getElementById('name').required = false;
     document.getElementById('surname').required = false;
