@@ -54,13 +54,9 @@ body {
 
 /* Main Container */
 .container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: auto;
-    flex-wrap: wrap; /* Stack on small screens */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Form container */
@@ -291,4 +287,82 @@ canvas {
 /* Hide Sections by Default */
 .hidden {
     display: none;
+}
+
+/* ---- Multi-calculator layout fix ---- */
+.tab-content {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.tab-content.hidden {
+    display: none !important;
+}
+
+/* Investment tab special case — form is already inside .container */
+#investment {
+    width: 100%;
+}
+
+/* Ensure charts inside tab-content are sized properly */
+.tab-content .chart-container {
+    flex: 2;
+    min-width: 320px;
+    max-width: 700px;
+}
+
+/* Result text color fix for all tabs */
+.result h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.result p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* itemized section */
+#itemizedSection {
+    margin-top: -10px;
+}
+
+/* Chart panels for multi-tab */
+[id$="Charts"] {
+    flex: 2;
+    min-width: 320px;
+    max-width: 700px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tax & Loan form labels */
+#loan .form-container h1,
+#mortgage .form-container h1,
+#tax .form-container h1 {
+    color: #333;
+}
+
+/* Result sections for new calculators */
+#loanResult, #mortgageResult, #taxResult {
+    margin-top: 20px;
+    padding: 16px;
+    background-color: #e9f7ef;
+    border: 2px solid #c3e6cb;
+    border-radius: 8px;
+    color: #155724;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+#loanResult h3, #mortgageResult h3, #taxResult h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
 }
