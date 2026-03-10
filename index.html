@@ -45,45 +45,18 @@
     <div class="hero-ctas">
       <a href="mailto:alfrednetanyahu@gmail.com" class="btn-primary">↗ Get in Touch</a>
       <a href="https://www.linkedin.com/in/ing-alfred-netanyahu-bwire-1966a8147/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
+      <a href="https://github.com/alfrednetanyahu" target="_blank" class="btn-ghost">GitHub /a>
     </div>
   </div>
 
   <!-- PHOTO PANEL -->
   <div class="hero-photo-panel">
     <div class="photo-frame">
-      <!-- Replace with your actual headshot: <img src="headshot.jpg" alt="Alfred Bwire"> -->
-      <div class="photo-placeholder">
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="18" r="8" stroke="#00c9a7" stroke-width="1.5"/>
-          <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#00c9a7" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <p>Add headshot.jpg</p>
-        <p style="font-size:9px; color: #4a5a66; max-width: 140px; text-align:center; line-height:1.5;">Replace this block with an &lt;img&gt; tag pointing to your photo</p>
-      </div>
+        <img src="alfie.jpg" alt="Alfred Bwire">
     </div>
     <p class="photo-caption">Alfred Bwire · Systems Engineer</p>
   </div>
 </section>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-num">9<span>+</span></div>
-    <div class="stat-label">Years Experience</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">500<span>k</span></div>
-    <div class="stat-label">MQTT Connections Supported</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">30<span>%</span></div>
-    <div class="stat-label">Efficiency Improvement Delivered</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">3<span>+</span></div>
-    <div class="stat-label">Cloud Platforms Mastered</div>
-  </div>
-</div>
 
 <!-- SKILLS -->
 <section id="skills">
@@ -152,11 +125,10 @@
       <div class="skill-group-title">Data &amp; Security</div>
       <div class="skill-tags">
         <span class="skill-tag highlight">DevSecOps</span>
+        <span class="skill-tag highlight">Vulnerability Scanning</span>
         <span class="skill-tag">IAM Hardening</span>
         <span class="skill-tag">Snowflake</span>
         <span class="skill-tag">Elasticsearch</span>
-        <span class="skill-tag">S3 Encryption</span>
-        <span class="skill-tag">ECR Lifecycle</span>
       </div>
     </div>
   </div>
@@ -343,9 +315,9 @@
   </div>
   <div class="target-grid">
     <div class="target-card">
-      <div class="target-role-label">JetBrains · Kineto Platform</div>
+      <!-- <div class="target-role-label">JetBrains · Kineto Platform</div> -->
       <div class="target-role-title">Cloud Infrastructure Engineer</div>
-      <div class="target-company">Amsterdam / Berlin / Remote (Germany)</div>
+      <div class="target-company">Europe / Remote (Germany)</div>
       <ul class="match-list">
         <li><span class="check">✓</span> 5+ years building large-scale cloud-native infrastructure on AWS (GCP experience transferable)</li>
         <li><span class="check">✓</span> Deep Kubernetes expertise — designed 500k+ connection EKS cluster in production</li>
@@ -357,9 +329,9 @@
       </ul>
     </div>
     <div class="target-card">
-      <div class="target-role-label">Medline Europe · Kleve / Utrecht</div>
-      <div class="target-role-title">Senior Systems Engineer (Hybrid Infrastructure)</div>
-      <div class="target-company">Hybrid · Kleve or Utrecht</div>
+      <!-- <div class="target-role-label">Medline Europe · Kleve / Utrecht</div> -->
+      <div class="target-role-title">Senior Systems Engineer</div>
+      <div class="target-company">Europe / Remote (Germany)</div>
       <ul class="match-list">
         <li><span class="check">✓</span> Experienced with hybrid cloud environments (AWS + Azure), on-prem integration</li>
         <li><span class="check">✓</span> Linux server administration expert with CIS benchmark hardening and Ansible</li>
@@ -367,7 +339,6 @@
         <li><span class="check">✓</span> Incident response, patch management automation, and SRE-oriented thinking</li>
         <li><span class="check">✓</span> Scripting proficiency in Bash and Python for automation and audit tooling</li>
         <li><span class="check">✓</span> Kubernetes experience (AKS/EKS) — listed as a nice-to-have, directly covered</li>
-        <li><span class="check">✓</span> Based in Düsseldorf — close to Kleve, ideal for hybrid work arrangement</li>
       </ul>
     </div>
   </div>
@@ -377,7 +348,7 @@
 <section id="contact">
   <div class="contact-eyebrow">Let's build something great</div>
   <h2 class="contact-heading">Ready to <em>connect?</em></h2>
-  <p class="contact-sub">Open to senior Systems Engineer, DevOps, and Cloud Infrastructure roles across Germany and Europe. Available for remote, hybrid, or on-site positions.</p>
+  <p class="contact-sub">Open to senior Systems Engineer, DevOps, and Cloud Infrastructure roles across Germany and Europe. Available for remote or hybrid positions.</p>
   <div class="contact-links">
     <a href="mailto:alfrednetanyahu@gmail.com" class="contact-link">
       <span>✉</span> alfrednetanyahu@gmail.com
@@ -408,7 +379,7 @@
   }, { threshold: 0.15 });
 
   document.querySelectorAll(
-    '.stat-item, .skill-group, .exp-item, .impact-card, .cred-item, .target-card'
+    '.skill-group, .exp-item, .impact-card, .cred-item, .target-card'
   ).forEach(el => observer.observe(el));
 
   window.addEventListener('scroll', () => {
