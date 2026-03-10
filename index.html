@@ -1,258 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Calculator Suite</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfred Bwire — Systems Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Background Overlay -->
-<div class="background-overlay"></div>
-
-<!-- Navigation Tabs -->
-<nav class="tab-navigation">
-    <ul>
-        <li class="tab active" data-tab="investment">Investment Calculator</li>
-        <li class="tab" data-tab="loan">Loan Calculator</li>
-        <li class="tab" data-tab="mortgage">Mortgage Calculator</li>
-        <li class="tab" data-tab="tax">Income Tax Calculator</li>
-    </ul>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Alfred Bwire</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<!-- Main Content -->
-<div class="container">
-    <!-- Investment Calculator (Default Visible Tab) -->
-    <div id="investment" class="tab-content active">
-        <div class="form-container">
-            <h1>Investment Calculator</h1>
-            <form id="investment-form">
-                <div class="form-group">
-                    <label for="initial">Initial Deposit ($):</label>
-                    <input type="number" id="initial" name="initial" min="0" value="0" required>
-                </div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
 
-                <div class="form-group">
-                    <label for="amount">Periodic Investment Amount ($):</label>
-                    <input type="number" id="amount" name="amount" min="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="frequency">Investment Frequency:</label>
-                    <select id="frequency" name="frequency" required>
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="timeline">Investment Timeline (years):</label>
-                    <input type="number" id="timeline" name="timeline" min="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="contributionTiming">Contribution Timing:</label>
-                    <select id="contributionTiming" name="contributionTiming" required>
-                        <option value="beginning">Beginning of Period</option>
-                        <option value="end">End of Period</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="investmentType">Investment Type:</label>
-                    <select id="investmentType" name="investmentType" required>
-                        <option value="index">Index (S&P 500, QQQ, Magnificent 7)</option>
-                        <option value="custom">Custom Stock Pie</option>
-                    </select>
-                </div>
-
-                <!-- Index selection -->
-                <div id="indexSection" class="form-group">
-                    <label for="index">Choose Index:</label>
-                    <select id="index" name="index">
-                        <option value="sp500">S&P 500 (Avg 10%)</option>
-                        <option value="qqq">QQQ (Avg 12%)</option>
-                        <option value="magnificent7">Magnificent 7 (Est. 15%)</option>
-                    </select>
-                </div>
-
-                <!-- Custom Pie Section -->
-                <div id="customPieSection" class="hidden">
-                    <h3>Build Your Stock Pie</h3>
-                    <div id="pieBuilder"></div>
-                    <button type="button" id="addStockBtn">Add Stock</button>
-                    <p><em>Note: Assuming 20% return for pie until real data is connected.</em></p>
-                </div>
-
-                <!-- Sign-Up Prompt -->
-                <!-- <div id="signupSection" class="hidden">
-                    <h3>Sign Up to Save Your Portfolio</h3>
-                    <div class="form-group">
-                        <label for="name">First Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="surname">Last Name:</label>
-                        <input type="text" id="surname" name="surname" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div> -->
-
-                <button type="submit">Calculate</button>
-                <div id="result" class="result"></div>
-            </form>
-        </div>
-        <div class="chart-container">
-            <canvas id="investmentChart"></canvas>
-            <canvas id="pieChart"></canvas>
-            <canvas id="buyHoldChart"></canvas>
-        </div>
+  <div class="hero-content">
+    <p class="hero-tag">Systems Engineer · DevOps · Cloud Infrastructure</p>
+    <h1 class="hero-name">Alfred<span>Bwire</span></h1>
+    <p class="hero-title">Building the infra that powers the future.</p>
+    <p class="hero-desc">
+      Near a decade of experience delivering secure, scalable, and automated cloud infrastructure.
+      Expert in DevSecOps, cloud-native Kubernetes platforms, CI/CD automation, and hybrid enterprise environments.
+      Based in Düsseldorf, Germany — open to remote and hybrid roles across Europe.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="dot"></span>Düsseldorf, Germany</div>
+      <div class="hero-meta-item"><span class="dot"></span>alfrednetanyahu@gmail.com</div>
+      <div class="hero-meta-item"><span class="dot"></span>+49 152 58768861</div>
+      <div class="hero-meta-item"><span class="dot"></span>AWS Certified · Terraform Associate</div>
     </div>
-    <!-- Loan Calculator -->
-    <div id="loan" class="tab-content hidden">
-        <div class="form-container">
-            <h1>Loan Calculator</h1>
-            <form id="loan-form">
-                <div class="form-group">
-                    <label for="loanAmount">Loan Amount ($):</label>
-                    <input type="number" id="loanAmount" min="1" value="10000" required>
-                </div>
-                <div class="form-group">
-                    <label for="loanRate">Annual Interest Rate (%):</label>
-                    <input type="number" id="loanRate" min="0.01" step="0.01" value="6.5" required>
-                </div>
-                <div class="form-group">
-                    <label for="loanTerm">Loan Term (years):</label>
-                    <input type="number" id="loanTerm" min="1" value="5" required>
-                </div>
-                <div class="form-group">
-                    <label for="loanType">Loan Type:</label>
-                    <select id="loanType">
-                        <option value="amortized">Amortized (Fixed Monthly)</option>
-                        <option value="interestOnly">Interest Only</option>
-                        <option value="bulletLoan">Bullet Loan (Lump Sum at End)</option>
-                    </select>
-                </div>
-                <button type="submit">Calculate</button>
-                <div id="loanResult" class="result"></div>
-            </form>
-        </div>
-        <div class="chart-container">
-            <canvas id="loanAmortChart"></canvas>
-            <canvas id="loanBreakdownChart"></canvas>
-        </div>
+    <div class="hero-ctas">
+      <a href="mailto:alfrednetanyahu@gmail.com" class="btn-primary">↗ Get in Touch</a>
+      <a href="https://www.linkedin.com/in/ing-alfred-netanyahu-bwire-1966a8147/" target="_blank" class="btn-ghost">LinkedIn Profile</a>
     </div>
+  </div>
 
-    <!-- Mortgage Calculator -->
-    <div id="mortgage" class="tab-content hidden">
-        <div class="form-container">
-            <h1>Mortgage Calculator</h1>
-            <form id="mortgage-form">
-                <div class="form-group">
-                    <label for="homePrice">Home Price ($):</label>
-                    <input type="number" id="homePrice" min="1" value="400000" required>
-                </div>
-                <div class="form-group">
-                    <label for="downPayment">Down Payment ($):</label>
-                    <input type="number" id="downPayment" min="0" value="80000" required>
-                </div>
-                <div class="form-group">
-                    <label for="mortgageRate">Annual Interest Rate (%):</label>
-                    <input type="number" id="mortgageRate" min="0.01" step="0.01" value="7.0" required>
-                </div>
-                <div class="form-group">
-                    <label for="mortgageTerm">Loan Term (years):</label>
-                    <select id="mortgageTerm">
-                        <option value="30">30 Years</option>
-                        <option value="20">20 Years</option>
-                        <option value="15">15 Years</option>
-                        <option value="10">10 Years</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="propertyTax">Annual Property Tax ($):</label>
-                    <input type="number" id="propertyTax" min="0" value="4800">
-                </div>
-                <div class="form-group">
-                    <label for="homeInsurance">Annual Home Insurance ($):</label>
-                    <input type="number" id="homeInsurance" min="0" value="1200">
-                </div>
-                <div class="form-group">
-                    <label for="pmi">Monthly PMI ($) <em style="font-weight:normal;color:#888;">(if &lt;20% down)</em>:</label>
-                    <input type="number" id="pmi" min="0" value="0">
-                </div>
-                <button type="submit">Calculate</button>
-                <div id="mortgageResult" class="result"></div>
-            </form>
-        </div>
-        <div class="chart-container">
-            <canvas id="mortgageAmortChart"></canvas>
-            <canvas id="mortgageBreakdownChart"></canvas>
-        </div>
+  <!-- PHOTO PANEL -->
+  <div class="hero-photo-panel">
+    <div class="photo-frame">
+      <!-- Replace with your actual headshot: <img src="headshot.jpg" alt="Alfred Bwire"> -->
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="18" r="8" stroke="#00c9a7" stroke-width="1.5"/>
+          <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#00c9a7" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p>Add headshot.jpg</p>
+        <p style="font-size:9px; color: #4a5a66; max-width: 140px; text-align:center; line-height:1.5;">Replace this block with an &lt;img&gt; tag pointing to your photo</p>
+      </div>
     </div>
+    <p class="photo-caption">Alfred Bwire · Systems Engineer</p>
+  </div>
+</section>
 
-    <!-- Income Tax Calculator -->
-    <div id="tax" class="tab-content hidden">
-        <div class="form-container">
-            <h1>Income Tax Calculator</h1>
-            <form id="tax-form">
-                <div class="form-group">
-                    <label for="grossIncome">Annual Gross Income ($):</label>
-                    <input type="number" id="grossIncome" min="0" value="75000" required>
-                </div>
-                <div class="form-group">
-                    <label for="filingStatus">Filing Status:</label>
-                    <select id="filingStatus">
-                        <option value="single">Single</option>
-                        <option value="marriedJoint">Married Filing Jointly</option>
-                        <option value="marriedSeparate">Married Filing Separately</option>
-                        <option value="headOfHousehold">Head of Household</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="deductionType">Deduction Type:</label>
-                    <select id="deductionType">
-                        <option value="standard">Standard Deduction</option>
-                        <option value="itemized">Itemized Deduction</option>
-                    </select>
-                </div>
-                <div id="itemizedSection" class="hidden">
-                    <div class="form-group">
-                        <label for="itemizedAmount">Total Itemized Deductions ($):</label>
-                        <input type="number" id="itemizedAmount" min="0" value="0">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="otherIncome">Other Income (dividends, freelance, etc.) ($):</label>
-                    <input type="number" id="otherIncome" min="0" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="preTaxDeductions">Pre-Tax Deductions (401k, HSA, etc.) ($):</label>
-                    <input type="number" id="preTaxDeductions" min="0" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="taxYear">Tax Year:</label>
-                    <select id="taxYear">
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                    </select>
-                </div>
-                <button type="submit">Calculate</button>
-                <div id="taxResult" class="result"></div>
-            </form>
-        </div>
-        <div class="chart-container">
-            <canvas id="taxBreakdownChart"></canvas>
-            <canvas id="taxBracketsChart"></canvas>
-        </div>
-    </div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">9<span>+</span></div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">500<span>k</span></div>
+    <div class="stat-label">MQTT Connections Supported</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">30<span>%</span></div>
+    <div class="stat-label">Efficiency Improvement Delivered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3<span>+</span></div>
+    <div class="stat-label">Cloud Platforms Mastered</div>
+  </div>
 </div>
 
-<script src="script.js"></script>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Technical Stack</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud Infrastructure</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">AWS</span>
+        <span class="skill-tag highlight">GCP</span>
+        <span class="skill-tag highlight">Azure</span>
+        <span class="skill-tag">OpenStack</span>
+        <span class="skill-tag">EKS</span>
+        <span class="skill-tag">GKE</span>
+        <span class="skill-tag">AKS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">CI/CD &amp; Containerization</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Kubernetes</span>
+        <span class="skill-tag highlight">Docker</span>
+        <span class="skill-tag highlight">GitHub Actions</span>
+        <span class="skill-tag">GitLab CI</span>
+        <span class="skill-tag">Jenkins</span>
+        <span class="skill-tag">Flux</span>
+        <span class="skill-tag">Helm</span>
+        <span class="skill-tag">Vagrant</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Infrastructure as Code</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Terraform</span>
+        <span class="skill-tag highlight">Ansible</span>
+        <span class="skill-tag">Bundlewrap</span>
+        <span class="skill-tag">CIS Benchmarks</span>
+        <span class="skill-tag">Policy-as-Code</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Observability &amp; SIEM</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Prometheus</span>
+        <span class="skill-tag highlight">Grafana</span>
+        <span class="skill-tag highlight">OpenSearch / ELK</span>
+        <span class="skill-tag">Datadog</span>
+        <span class="skill-tag">CloudWatch</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Python</span>
+        <span class="skill-tag highlight">Bash</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Ruby</span>
+        <span class="skill-tag">C++</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data &amp; Security</div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">DevSecOps</span>
+        <span class="skill-tag">IAM Hardening</span>
+        <span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">Elasticsearch</span>
+        <span class="skill-tag">S3 Encryption</span>
+        <span class="skill-tag">ECR Lifecycle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-timeline">
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-meta">
+        <span class="exp-period">2020 — Present</span>
+        <span class="exp-company">tonies GmbH</span>
+      </div>
+      <div class="exp-role">Systems Engineer</div>
+      <div class="exp-location">📍 Düsseldorf, Germany</div>
+      <ul class="exp-achievements">
+        <li><span></span><div><strong>Established company-wide DevSecOps function</strong> — defined security baselines and automated controls deeply integrated with CI/CD pipelines, bringing security into every deployment.</div></li>
+        <li><span></span><div><strong>Designed &amp; launched a self-hosted OpenSearch Stack</strong> with cost analysis and monitoring, handling increasing customer and company data volumes at enterprise scale.</div></li>
+        <li><span></span><div><strong>Architected an MQTT cluster on AWS EKS</strong> capable of sustaining 500,000+ concurrent client connections — a core backbone for the company's connected product platform.</div></li>
+        <li><span></span><div><strong>Automated patch management pipelines</strong> for AMIs and containers using AWS Systems Manager and ECR lifecycle policies, eliminating manual toil and security drift.</div></li>
+        <li><span></span><div><strong>Hardened Linux servers to CIS benchmarks</strong> via Ansible automation — consistent, auditable security posture across the entire fleet.</div></li>
+        <li><span></span><div><strong>Built Python-based audit reporting tools</strong> to continuously scan IAM, S3, and encryption settings across AWS accounts, enabling proactive compliance.</div></li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-meta">
+        <span class="exp-period">2019 — 2020</span>
+        <span class="exp-company">Real GmbH</span>
+      </div>
+      <div class="exp-role">Systems Engineer</div>
+      <div class="exp-location">📍 Düsseldorf, Germany</div>
+      <ul class="exp-achievements">
+        <li><span></span><div>Contributed to the UNIX-based <strong>'Real OS'</strong> for on-site tablets powering E-food delivery operations across multiple sites.</div></li>
+        <li><span></span><div><strong>Architected and deployed microservices</strong> using Docker Swarm and Jenkins, enabling scalable, independently deployable services.</div></li>
+        <li><span></span><div><strong>Boosted on-site order efficiency by 30%</strong> by building a JavaScript web application streamlining the order-to-delivery workflow.</div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Key Achievements</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <span class="impact-icon">⚡</span>
+      <div class="impact-metric">500k+</div>
+      <div class="impact-title">MQTT Connections on AWS EKS</div>
+      <div class="impact-desc">Designed and delivered a production MQTT cluster on Kubernetes capable of supporting half a million simultaneous client connections — enabling reliable IoT-scale connectivity for tonies' products.</div>
+    </div>
+    <div class="impact-card">
+      <span class="impact-icon">🛡️</span>
+      <div class="impact-metric">Zero</div>
+      <div class="impact-title">Security Drift via DevSecOps Automation</div>
+      <div class="impact-desc">Founded the company's DevSecOps function from scratch. Automated security controls, IAM audits, and CIS hardening via Ansible — eliminating manual security gaps and enforcing policy-as-code.</div>
+    </div>
+    <div class="impact-card">
+      <span class="impact-icon">📈</span>
+      <div class="impact-metric">30%</div>
+      <div class="impact-title">Operational Efficiency Gain</div>
+      <div class="impact-desc">Delivered a JavaScript-based order management web app at Real GmbH that cut on-site processing time by 30%, directly improving delivery throughput and customer satisfaction metrics.</div>
+    </div>
+    <div class="impact-card">
+      <span class="impact-icon">🔍</span>
+      <div class="impact-metric">Real-time</div>
+      <div class="impact-title">Enterprise Observability Platform</div>
+      <div class="impact-desc">Built and deployed a self-hosted OpenSearch stack with Grafana and cost dashboards. Enabled real-time visibility across distributed systems, proactive alerting, and data-driven infrastructure decisions.</div>
+    </div>
+    <div class="impact-card">
+      <span class="impact-icon">🤖</span>
+      <div class="impact-metric">100%</div>
+      <div class="impact-title">Automated Patch Management</div>
+      <div class="impact-desc">Eliminated manual patching cycles with fully automated AMI and container image pipelines via AWS Systems Manager and ECR lifecycle policies — ensuring always-current, compliant environments.</div>
+    </div>
+    <div class="impact-card">
+      <span class="impact-icon">🏗️</span>
+      <div class="impact-metric">Multi-cloud</div>
+      <div class="impact-title">IaC-Driven Infrastructure</div>
+      <div class="impact-desc">Manages infrastructure across AWS, Azure, and GCP through Terraform and Ansible — reproducible, auditable, and secure. Certified HashiCorp Terraform Associate and AWS Solutions Architect.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="credentials-grid">
+    <div>
+      <div class="cred-block-title">Education</div>
+      <div class="cred-list">
+        <div class="cred-item">
+          <div class="cred-badge">🎓</div>
+          <div class="cred-info">
+            <div class="cred-name">M.A. in IT Management</div>
+            <div class="cred-sub">IU International University of Applied Sciences · Berlin</div>
+            <div class="cred-period">2023 — 2025</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-badge">⚙️</div>
+          <div class="cred-info">
+            <div class="cred-name">B.Sc. Mechatronics Engineering</div>
+            <div class="cred-sub">Rhine-Waal University of Applied Science · Kleve</div>
+            <div class="cred-period">2014 — 2019</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-badge">⚓</div>
+          <div class="cred-info">
+            <div class="cred-name">Marine Engineering</div>
+            <div class="cred-sub">Jomo Kenyatta University of Agriculture &amp; Technology · Kenya</div>
+            <div class="cred-period">2013 — 2014</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="cred-block-title">Certifications &amp; Languages</div>
+      <div class="cred-list">
+        <div class="cred-item">
+          <div class="cred-badge">🏆</div>
+          <div class="cred-info">
+            <div class="cred-name">HashiCorp Certified: Terraform Associate</div>
+            <div class="cred-sub">HashiCorp</div>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-badge">☁️</div>
+          <div class="cred-info">
+            <div class="cred-name">AWS Certified Solutions Architect</div>
+            <div class="cred-sub">Amazon Web Services</div>
+          </div>
+        </div>
+        <div class="cred-item" style="margin-top: 8px;">
+          <div style="flex: 1;">
+            <div class="lang-grid">
+              <div class="lang-item">
+                <div class="lang-name">English</div>
+                <div class="lang-level-text">Native</div>
+                <div class="lang-bar"><div class="lang-bar-fill" data-width="100%"></div></div>
+              </div>
+              <div class="lang-item">
+                <div class="lang-name">German</div>
+                <div class="lang-level-text">Proficient</div>
+                <div class="lang-bar"><div class="lang-bar-fill" data-width="75%"></div></div>
+              </div>
+              <div class="lang-item">
+                <div class="lang-name">French</div>
+                <div class="lang-level-text">Intermediate</div>
+                <div class="lang-bar"><div class="lang-bar-fill" data-width="45%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET ROLES -->
+<section id="target">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Why I'm a Strong Fit</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="target-grid">
+    <div class="target-card">
+      <div class="target-role-label">JetBrains · Kineto Platform</div>
+      <div class="target-role-title">Cloud Infrastructure Engineer</div>
+      <div class="target-company">Amsterdam / Berlin / Remote (Germany)</div>
+      <ul class="match-list">
+        <li><span class="check">✓</span> 5+ years building large-scale cloud-native infrastructure on AWS (GCP experience transferable)</li>
+        <li><span class="check">✓</span> Deep Kubernetes expertise — designed 500k+ connection EKS cluster in production</li>
+        <li><span class="check">✓</span> Terraform-certified; manages complex multi-environment IaC setups</li>
+        <li><span class="check">✓</span> Extensive CI/CD experience: GitHub Actions, GitLab CI, Jenkins, Flux-style GitOps</li>
+        <li><span class="check">✓</span> Full monitoring stack experience: Prometheus, Grafana, ELK/OpenSearch</li>
+        <li><span class="check">✓</span> Linux internals mastery, CIS hardening, security-first engineering mindset</li>
+        <li><span class="check">✓</span> Proven cross-team collaboration and mentoring track record</li>
+      </ul>
+    </div>
+    <div class="target-card">
+      <div class="target-role-label">Medline Europe · Kleve / Utrecht</div>
+      <div class="target-role-title">Senior Systems Engineer (Hybrid Infrastructure)</div>
+      <div class="target-company">Hybrid · Kleve or Utrecht</div>
+      <ul class="match-list">
+        <li><span class="check">✓</span> Experienced with hybrid cloud environments (AWS + Azure), on-prem integration</li>
+        <li><span class="check">✓</span> Linux server administration expert with CIS benchmark hardening and Ansible</li>
+        <li><span class="check">✓</span> Strong operational monitoring background — OpenSearch, Grafana, Datadog, Prometheus</li>
+        <li><span class="check">✓</span> Incident response, patch management automation, and SRE-oriented thinking</li>
+        <li><span class="check">✓</span> Scripting proficiency in Bash and Python for automation and audit tooling</li>
+        <li><span class="check">✓</span> Kubernetes experience (AKS/EKS) — listed as a nice-to-have, directly covered</li>
+        <li><span class="check">✓</span> Based in Düsseldorf — close to Kleve, ideal for hybrid work arrangement</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-eyebrow">Let's build something great</div>
+  <h2 class="contact-heading">Ready to <em>connect?</em></h2>
+  <p class="contact-sub">Open to senior Systems Engineer, DevOps, and Cloud Infrastructure roles across Germany and Europe. Available for remote, hybrid, or on-site positions.</p>
+  <div class="contact-links">
+    <a href="mailto:alfrednetanyahu@gmail.com" class="contact-link">
+      <span>✉</span> alfrednetanyahu@gmail.com
+    </a>
+    <a href="tel:+4915258768861" class="contact-link">
+      <span>📞</span> +49 152 58768861
+    </a>
+    <a href="https://www.linkedin.com/in/ing-alfred-netanyahu-bwire-1966a8147/" target="_blank" class="contact-link">
+      <span>🔗</span> LinkedIn
+    </a>
+  </div>
+  <p class="footer-note">Alfred Bwire · Düsseldorf, Germany · Systems Engineer</p>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.lang-bar-fill[data-width]').forEach(b => {
+            setTimeout(() => b.style.width = b.dataset.width, 200);
+          });
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(
+    '.stat-item, .skill-group, .exp-item, .impact-card, .cred-item, .target-card'
+  ).forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.borderBottomColor = window.scrollY > 80
+      ? 'rgba(0,201,167,0.15)'
+      : 'rgba(255,255,255,0.07)';
+  });
+</script>
 </body>
 </html>
